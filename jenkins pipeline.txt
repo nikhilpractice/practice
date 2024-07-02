@@ -1,0 +1,48 @@
+switch java versions in ubuntu
+> update-java-alternatives --list
+>sudo update-java-alternatives --set /path/to/java/version
+
+
+
+
+-------------------------------------------------------------------------------------------
+pipeline {
+    agent any
+    
+tools  {
+    jdk 'java'
+    maven 'maven'
+    
+}
+
+environment {
+
+      sonar_url = 'http://3.110.209.152:9000'
+      sonar_username = 'admin'
+      sonar_password = '1234'
+
+ }
+
+    stages {
+        stage('git clone') {
+            steps {
+                git branch : 'main',
+                url : 'https://github.com/nikhilpractice/helloworld-project-1.git'
+            }
+        }
+        stage('maven'){
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage ('Sonarqube Analysis'){
+           steps {
+           withSonarQubeEnv('sonarqube') {
+           sh '''
+           mvn -e -B sonar:sonar -Dsonar.java.source=1.8 -Dsonar.host.url="${sonar_url}" -Dsonar.login="${sonar_username}" -Dsonar.password="${sonar_password}" -Dsonar.sourceEncoding=UTF-8
+           '''
+           }
+         }
+      }
+    }
+}

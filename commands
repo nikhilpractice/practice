@@ -1,0 +1,123 @@
+# Unix/Linux Documentation
+
+## 1. Introduction to Unix/Linux
+Unix/Linux is a powerful, multi-user, and multi-tasking operating system used for servers, desktops, and embedded systems. It is known for its stability, security, and flexibility.
+
+## 2. Basic Unix/Linux Commands
+### File and Directory Management
+- `pwd` – Print current directory
+- `ls` – List files and directories
+- `cd directory` – Change directory
+- `mkdir directory` – Create a new directory
+- `rmdir directory` – Remove an empty directory
+- `rm file` – Delete a file
+- `rm -r directory` – Delete a directory and its contents
+
+### File Permissions
+- `ls -l` – List file permissions
+- `chmod 755 file` – Change file permissions
+- `chown user:group file` – Change file ownership
+
+### File Operations
+- `cp source destination` – Copy files
+- `mv source destination` – Move/rename files
+- `touch file` – Create an empty file
+- `cat file` – View file contents
+- `less file` – View file contents page-wise
+
+## 3. User and Group Management
+- `whoami` – Display current user
+- `who` – List logged-in users
+- `id` – Show user ID (UID) and group ID (GID)
+- `useradd username` – Create a new user
+- `passwd username` – Set user password
+- `usermod -aG group username` – Add user to a group
+- `deluser username` – Delete a user
+- `groupadd groupname` – Create a new group
+- `groupdel groupname` – Delete a group
+
+## 4. Process Management
+- `ps aux` – Show running processes
+- `top` – Display real-time process information
+- `htop` – Interactive process viewer (needs installation)
+- `kill PID` – Terminate a process
+- `kill -9 PID` – Force kill a process
+- `nice -n 10 command` – Run a process with priority
+- `renice -n -5 PID` – Change process priority
+
+## 5. Networking
+- `ip a` – Show IP address
+- `ping hostname` – Test network connectivity
+- `netstat -tulnp` – Display open ports
+- `curl URL` – Fetch a webpage
+- `wget URL` – Download a file
+- `traceroute hostname` – Show packet route
+
+## 6. Storage and Disk Management
+- `df -h` – Display disk usage
+- `du -sh folder` – Show directory size
+- `lsblk` – Show block devices
+- `mount /dev/sdX /mnt` – Mount a partition
+- `umount /mnt` – Unmount a partition
+- `mkfs.ext4 /dev/sdX` – Format a partition
+
+## 7. Log Management
+- `tail -f /var/log/syslog` – View system logs in real-time
+- `cat /var/log/auth.log` – View authentication logs
+- `journalctl -xe` – View detailed system logs
+
+## 8. Package Management
+### Debian/Ubuntu (APT)
+- `sudo apt update` – Refresh package index
+- `sudo apt upgrade` – Upgrade installed packages
+- `sudo apt install package-name` – Install a package
+- `sudo apt remove package-name` – Remove a package
+
+### RHEL/CentOS (YUM/DNF)
+- `sudo yum update` – Update system packages
+- `sudo yum install package-name` – Install a package
+- `sudo yum remove package-name` – Remove a package
+
+## 9. Scheduled Tasks (Crontab)
+- `crontab -e` – Edit cron jobs
+- `crontab -l` – List scheduled jobs
+
+Example cron job:
+```
+0 2 * * * /path/to/script.sh  # Run script at 2 AM daily
+*/5 * * * * /path/to/script.sh  # Run script every 5 minutes
+```
+
+## 10. Security and Firewall
+- `ufw status` – Check firewall status (Ubuntu)
+- `ufw allow 22/tcp` – Allow SSH access
+- `iptables -L` – List firewall rules
+- `iptables -A INPUT -p tcp --dport 22 -j ACCEPT` – Allow SSH access
+
+## 11. Shell Scripting Basics
+### Example Script:
+```bash
+#!/bin/bash
+echo "Hello, Unix/Linux!"
+```
+Run the script:
+```bash
+chmod +x script.sh
+./script.sh
+```
+
+## 12. Backup & Restore
+- `tar -cvf backup.tar /path/to/dir` – Create a backup
+- `tar -xvf backup.tar` – Extract a backup
+- `rsync -av /source/ /destination/` – Sync directories
+
+## 13. System Performance Monitoring
+- `uptime` – Show system uptime
+- `free -h` – Display memory usage
+- `vmstat 2 5` – Monitor CPU & memory usage
+- `iostat` – Check CPU and disk I/O usage
+- `sar -u 5 10` – Monitor CPU usage every 5 sec (10 times)
+
+## Conclusion
+Unix/Linux provides robust tools for system administration, networking, and security. Mastering these commands will help in managing servers efficiently.
+
